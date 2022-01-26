@@ -5,8 +5,28 @@ package WBTM
 
 class App {
 
+    /*
+        http://www.robertlomas.com/megyard/index.html
+     */
+
     App() {
-        println(33)
+
+        //all in m
+
+        def earthCirEq = 40075017
+        def earthCirPoles = 40007863
+
+        def megalithicYard = 0.82966
+
+        def cMegalithicYard = [earthCirEq, earthCirPoles].collect {
+            (((it / 366) / 60) / 6) / 366
+        }.min {
+            Math.abs(megalithicYard - it)
+        }
+
+        println(megalithicYard)
+        println(cMegalithicYard)
+
     }
 
     static void main(String[] args) {
