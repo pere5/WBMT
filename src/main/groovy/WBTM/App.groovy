@@ -4,11 +4,12 @@
 package WBTM
 
 class App {
-    String getGreeting() {
-        return 'Hello world.'
+
+    App() {
+        println(33)
     }
 
     static void main(String[] args) {
-        println new App().greeting
+        new App()
     }
 }
