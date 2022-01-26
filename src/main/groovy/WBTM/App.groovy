@@ -12,21 +12,44 @@ class App {
     App() {
 
         //all in m
-
         def earthCirEq = 40075017
         def earthCirPoles = 40007863
 
         def megalithicYard = 0.82966
 
-        def cMegalithicYard = [earthCirEq, earthCirPoles].collect {
-            (((it / 366) / 60) / 6) / 366
-        }.min {
-            Math.abs(megalithicYard - it)
-        }
+        def megalithicYardFromEarthCircumference = earthCirPoles / 366 / 60 / 6 / 366
 
         println(megalithicYard)
-        println(cMegalithicYard)
+        println(megalithicYardFromEarthCircumference)
 
+        def earthKg =  5.9722 * Math.pow(10, 24)
+        def lbPerKg = 2.20462
+        def earthLb = earthKg * lbPerKg
+
+        def megalithicSecondOfArchOfTheEarthLb = earthLb / 366 / 60 / 6
+
+        //println(megalithicSecondOfArchOfTheEarthLb)
+        def oneHundredQuintillion = Math.pow(10, 20)
+
+        def g = 9.80665
+
+        def L = megalithicYardFromEarthCircumference / 2
+        def pendulumSwingFromEarthCircumference = 2 * Math.PI * Math.sqrt( L / g )
+
+        //println(pendulumSwingFromEarthCircumference)
+        def secondsOfDay = 86400
+        def pendulumSwingFromSecondsOfDay = secondsOfDay / 366 / 366 * 2
+        //println(pendulumSwingFromSecondsOfDay)
+        def LFromSecondsOfDay = g * Math.pow(pendulumSwingFromSecondsOfDay / (2 * Math.PI ), 2)
+
+        def megalithicYardFromPendulum = LFromSecondsOfDay * 2
+
+        println(megalithicYardFromPendulum)
+
+        println(megalithicYardFromEarthCircumference / megalithicYard * 100)
+        println(megalithicYardFromPendulum / megalithicYard * 100)
+        println(megalithicSecondOfArchOfTheEarthLb / oneHundredQuintillion * 100)
+        println(pendulumSwingFromSecondsOfDay / pendulumSwingFromEarthCircumference * 100)
     }
 
     static void main(String[] args) {
