@@ -6,50 +6,70 @@ package WBTM
 class App {
 
     /*
-        http://www.robertlomas.com/megyard/index.html
+
      */
 
     App() {
 
-        //all in m
-        def earthCirEq = 40075017
-        def earthCirPoles = 40007863
+        /*
+            https://www.youtube.com/watch?v=TT4EfwmY5qU
+         */
 
         def megalithicYard = 0.82966
+        earthWeight()
+        BigDecimal megalithicYardFromEarthCircumference = circumference()
+        double megalithicYardFromPendulum = pendulum(megalithicYardFromEarthCircumference)
 
-        def megalithicYardFromEarthCircumference = earthCirPoles / 366 / 60 / 6 / 366
+        println()
+        println("megalithicYardFromPendulum: ${megalithicYardFromPendulum}")
+        println("megalithicYardFromEarthCircumference: ${megalithicYardFromEarthCircumference}")
 
-        println(megalithicYard)
-        println(megalithicYardFromEarthCircumference)
+        println()
+        println("megalithicYardFromEarthCircumference / megalithicYard: ${megalithicYardFromEarthCircumference / megalithicYard * 100}")
+        println("megalithicYardFromPendulum / megalithicYard: ${megalithicYardFromPendulum / megalithicYard * 100}")
 
-        def earthKg =  5.9722 * Math.pow(10, 24)
+    }
+
+    private void earthWeight() {
+        def earthKg = 5.9722 * Math.pow(10, 24)
         def lbPerKg = 2.20462
         def earthLb = earthKg * lbPerKg
 
         def megalithicSecondOfArchOfTheEarthLb = earthLb / 366 / 60 / 6
 
-        //println(megalithicSecondOfArchOfTheEarthLb)
         def oneHundredQuintillion = Math.pow(10, 20)
 
+        println()
+        println("megalithicSecondOfArchOfTheEarthLb / oneHundredQuintillion: ${megalithicSecondOfArchOfTheEarthLb / oneHundredQuintillion * 100}")
+    }
+
+    private static BigDecimal circumference() {
+        //all in m
+        def earthCirEq_m = 40075017
+        def earthCirPoles_m = 40007863
+        def megalithicYardFromEarthCircumference = earthCirPoles_m / 366 / 60 / 6 / 366
+        return megalithicYardFromEarthCircumference
+    }
+
+    /*
+        http://www.robertlomas.com/megyard/index.html
+     */
+    private static double pendulum(BigDecimal megalithicYardFromEarthCircumference) {
         def g = 9.80665
 
         def L = megalithicYardFromEarthCircumference / 2
-        def pendulumSwingFromEarthCircumference = 2 * Math.PI * Math.sqrt( L / g )
+        def pendulumSwingFromEarthCircumference = 2 * Math.PI * Math.sqrt(L / g)
 
-        //println(pendulumSwingFromEarthCircumference)
         def secondsOfDay = 86400
         def pendulumSwingFromSecondsOfDay = secondsOfDay / 366 / 366 * 2
-        //println(pendulumSwingFromSecondsOfDay)
-        def LFromSecondsOfDay = g * Math.pow(pendulumSwingFromSecondsOfDay / (2 * Math.PI ), 2)
+        def LFromSecondsOfDay = g * Math.pow(pendulumSwingFromSecondsOfDay / (2 * Math.PI), 2)
 
         def megalithicYardFromPendulum = LFromSecondsOfDay * 2
 
-        println(megalithicYardFromPendulum)
+        println()
+        println("pendulumSwingFromSecondsOfDay / pendulumSwingFromEarthCircumference: ${pendulumSwingFromSecondsOfDay / pendulumSwingFromEarthCircumference * 100}")
 
-        println(megalithicYardFromEarthCircumference / megalithicYard * 100)
-        println(megalithicYardFromPendulum / megalithicYard * 100)
-        println(megalithicSecondOfArchOfTheEarthLb / oneHundredQuintillion * 100)
-        println(pendulumSwingFromSecondsOfDay / pendulumSwingFromEarthCircumference * 100)
+        return megalithicYardFromPendulum
     }
 
     static void main(String[] args) {
