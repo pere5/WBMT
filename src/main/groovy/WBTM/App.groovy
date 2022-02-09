@@ -20,6 +20,8 @@ class App {
         BigDecimal megalithicYardFromEarthCircumference = circumference()
         double megalithicYardFromPendulum = pendulum(megalithicYardFromEarthCircumference)
 
+        sumerianMetricSystem()
+
         println()
         println("megalithicYardFromPendulum: ${megalithicYardFromPendulum}")
         println("megalithicYardFromEarthCircumference: ${megalithicYardFromEarthCircumference}")
@@ -28,6 +30,22 @@ class App {
         println("megalithicYardFromEarthCircumference / megalithicYard: ${megalithicYardFromEarthCircumference / megalithicYard * 100}")
         println("megalithicYardFromPendulum / megalithicYard: ${megalithicYardFromPendulum / megalithicYard * 100}")
 
+        println()
+        theMoon()
+
+    }
+
+    private def theMoon() {
+        def moonCircumferenceKm = 10921
+        def earthCircumferenceKm = 40075
+
+
+
+        println("earthCircumferenceKm / moonCircumferenceKm: ${earthCircumferenceKm / moonCircumferenceKm}")
+    }
+
+    private def sumerianMetricSystem() {
+        int lol = 0
     }
 
     private void earthWeight() {
